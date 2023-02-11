@@ -5,7 +5,7 @@ ___
 ### Документация по проекту
 
 1. [План тестирования](https://github.com/Artpogorelov/Diplom-QA-45/blob/main/Plan.md)
-2. [Отчет по итогам автоматизированного тестирования]
+2. [Отчет по итогам автоматизированного тестирования](https://github.com/Artpogorelov/Diplom-QA-45/blob/main/Report.md)
 3. [Отчет по итогам автоматизации](https://github.com/Artpogorelov/Diplom-QA-45/blob/main/Summary.md)
 
 ### Запуск приложения
