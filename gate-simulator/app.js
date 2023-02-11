@@ -9,19 +9,19 @@ const server = express();
 server.use(express.json());
 
 server.post(['/payment', '/credit'], (req, res) => {
-  console.log(`Incoming request: ${req.path} ${JSON.stringify(req.body)}`);
-  const {body: {number}} = req;
+    console.log(`Incoming request: ${req.path} ${JSON.stringify(req.body)}`);
+    const {body: {number}} = req;
 
-  const [item] = data.filter(o => o.number === number);
-  if (item === undefined) {
-    res.status(400).end();
-    return;
-  }
+    const [item] = data.filter(o => o.number === number);
+    if (item === undefined) {
+        res.status(400).end();
+        return;
+    }
 
-  res.send({
-    id: uuidv4(),
-    status: item.status,
-  });
+    res.send({
+        id: uuidv4(),
+        status: item.status,
+    });
 });
 
 // get port from environment variable or just use 9999
