@@ -7,9 +7,10 @@
 * 29 успешных 
 * 39 не успешных 
 
-#### Отчет Gradle:
+#### Отчет Alure:
 
-![Снимок экрана (41)](https://user-images.githubusercontent.com/110556248/218269036-6831faa9-5a0a-4194-af12-86fcdbd92cca.png)
+![Screenshot_1](https://user-images.githubusercontent.com/110556248/218523412-12a02ac2-5078-4264-96ed-94b9de379f27.png)
+
 
 ### Общие рекомендации
 * Устранить выявленные баги. Указаны в [issue]();
