@@ -36,7 +36,7 @@ ___
    ```
 1. Для PostgreSQL: 
  ```
-   ./gradlew clean test "-Ddb.url=jdbc:mysql://192.168.99.100:5432/app"
+   ./gradlew clean test "-Ddb.url=jdbc:postgresql://192.168.99.100:5432/app"
    ```
   
 * запустить отчет командой:
