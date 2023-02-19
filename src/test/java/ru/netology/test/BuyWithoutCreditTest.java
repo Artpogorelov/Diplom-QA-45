@@ -38,139 +38,139 @@ public class BuyWithoutCreditTest {
 
     @Test
     void shouldApproveFirstCard() {  /* Покупка тура при вводе валидных данных карты*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.expectApprovalFromBank();
-        val expected = DataHelper.getFirstCardExpectedStatus();
-        val actual = DBHelper.getStatusPaymentWithoutCredit();
+        var expected = DataHelper.getFirstCardExpectedStatus();
+        var actual = DBHelper.getStatusPaymentWithoutCredit();
         assertEquals(expected, actual);
 
     }
 
     @Test
     void shouldRejectSecondCard() { /*Покупка тура при вводе невалидных данных карты*/
-        val cardNumber = DataHelper.getSecondCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getSecondCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.expectRejectionFromBank();
-        val expected = DataHelper.getSecondCardExpectedStatus();
-        val actual = DBHelper.getStatusPaymentWithoutCredit();
+        var expected = DataHelper.getSecondCardExpectedStatus();
+        var actual = DBHelper.getStatusPaymentWithoutCredit();
         assertEquals(expected, actual);
     }
 
     @Test
     void сheckingIncompleteData() { /*Покупка тура при вводе неполных данных*/
-        val cardNumber = DataHelper.getCardNumberIncomplete();
-        val month = DataHelper.getIncompleteMonth();
-        val year = DataHelper.getIncompleteYear();
-        val owner = DataHelper.getIncompleteOwner();
-        val cvс = DataHelper.getIncompleteCvс();
+        var cardNumber = DataHelper.getCardNumberIncomplete();
+        var month = DataHelper.getIncompleteMonth();
+        var year = DataHelper.getIncompleteYear();
+        var owner = DataHelper.getIncompleteOwner();
+        var cvс = DataHelper.getIncompleteCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitNecessaryFillOutField();
     }
 
     @Test
     void сheckingСardNumberRequestedData() { /*Покупка тура при вводе одинаковых цифр номера карты*/
-        val cardNumber = DataHelper.getCardNumberRequestedData();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getCardNumberRequestedData();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.expectRejectionFromBank();
     }
 
     @Test
     void сheckingСardNumberZero() { /*Покупка тура при вводе нулей в поле номер карты */
-        val cardNumber = DataHelper.getCardNumberZero();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getCardNumberZero();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void сheckingСardNumberUnderLimit() { /*Покупка тура при вводе 4 цифр в поле номер карты */
-        val cardNumber = DataHelper.getCardNumberUnderLimit();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getCardNumberUnderLimit();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void сheckingСardNumberOverLimit() { /*Покупка тура при вводе 17 цифр в поле номер карты */
-        val cardNumber = DataHelper.getCardNumberOverLimit();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getCardNumberOverLimit();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.expectApprovalFromBank();
     }
 
     @Test
     void сheckingСardWithText() { /*Покупка тура при вводе текста в поле номер карты */
-        val cardNumber = DataHelper.getValueText();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getValueText();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void shouldRejectInvalidMonth() { /*Покупка тура при вводе невалидного месяца*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getInvalidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getInvalidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidDuration();
     }
 
     @Test
     void checkingMonthWithText() { /*Покупка тура при вводе букв в поле месяца*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper. getValueText();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper. getValueText();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void checkingMonthOverLimit() { /*Покупка тура при вводе трех цифр в поле месяца*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getDurationOverLimit();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getDurationOverLimit();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidDuration();
     }
 
     @Test
     void shouldRejectZeroMonth() { /*Покупка тура при вводе нулевого месяца*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getZeroValue();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getZeroValue();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
@@ -178,242 +178,242 @@ public class BuyWithoutCreditTest {
 
     @Test
     void shouldRejectPastMonth() {  /*Покупка тура по карте с истекшим сроком годности*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getPastMonth();
-        val year = DataHelper.getThisYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getPastMonth();
+        var year = DataHelper.getThisYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidYear();
     }
 
     @Test
     void shouldRejectInvalidYear() { /*Покупка тура при вводе невалидного года*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getInvalidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getInvalidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidYear();
     }
 
     @Test
     void shouldRejectZeroYear() { /*Покупка тура при вводе нулевого года*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getZeroValue();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getZeroValue();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void checkingYearWithText() { /*Покупка тура при вводе букв в поле года*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper. getValidMonth();
-        val year = DataHelper.getValueText();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper. getValidMonth();
+        var year = DataHelper.getValueText();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void checkingYearOverLimit() { /*Покупка тура при вводе трех цифр в поле года*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getDurationOverLimit();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getDurationOverLimit();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void сheckingOwnerUnderLimit() { /*Покупка тура при вводе одной буквы в поле владельца*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getUnderLimitOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getUnderLimitOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void сheckingOwnerOverLimit() { /*Покупка тура при вводе 20 букв слитно в поле владельца*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getOverLimitOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getOverLimitOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void checkingOwnerWithoutSpaces() { /*Покупка тура при вводе имени и фамилии владельца слитно*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getDataWithoutSpaces();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getDataWithoutSpaces();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void checkingOwnerWithNumbers() { /*Покупка тура при вводе цифр в поле владелец*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getOwnerNumbers();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getOwnerNumbers();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void checkingOwnerRus() { /*Покупка тура при вводе владельца на русском языке*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getInvalidOwnerRus();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getInvalidOwnerRus();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void сheckingOwnerOnlySurname() { /*Покупка тура при вводе только фамилии в поле владельца*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getOwnerOnlySurname();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getOwnerOnlySurname();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void checkingOwnerLowerCase() { /*Покупка тура при вводе строчных букв в поле владельца*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getOwnerLowerCase();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getOwnerLowerCase();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void checkingOwnerInvalid() { /*Покупка тура при вводе невалидного владельца*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getInvalidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getInvalidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void shouldRejectInvalidCvс() { /*Покупка тура при вводе невалидного cvc*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getInvalidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getInvalidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void shouldRejectZeroCvc() { /*Покупка тура при вводе нулевого cvc*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getZeroCvv();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getZeroCvv();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void checkingCVVOverLimit() { /*Покупка тура при вводе cvc сверх лимита*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getCvcOverLimit();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getCvcOverLimit();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void checkingCVVWithText() { /*Покупка тура при вводе текста в поле cvc*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValueText();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValueText();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitInvalidFormat();
     }
 
     @Test
     void shouldRejectEmptyNumberCard() { /*Покупка тура при отсутствии ввода номера карты*/
-        val cardNumber = DataHelper.getEmptyValue();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getEmptyValue();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitNecessaryFillOutField();
     }
 
     @Test
     void shouldRejectEmptyMonth() { /*Покупка тура при отсутствии ввода месяца*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getEmptyValue();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getEmptyValue();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitNecessaryFillOutField();
     }
 
     @Test
     void shouldRejectEmptyYear() { /*Покупка тура при отсутствии ввода года*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getEmptyValue();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getEmptyValue();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitNecessaryFillOutField();
     }
 
     @Test
     void shouldRejectEmptyCvс() { /*Покупка тура при отсутствии ввода cvc*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getValidOwner();
-        val cvс = DataHelper.getEmptyValue();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidOwner();
+        var cvс = DataHelper.getEmptyValue();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitNecessaryFillOutField();
     }
 
     @Test
     void shouldRejectEmptyOwner() { /*Покупка тура при отсутствии ввода владельца*/
-        val cardNumber = DataHelper.getFirstCardNumber();
-        val month = DataHelper.getValidMonth();
-        val year = DataHelper.getValidYear();
-        val owner = DataHelper.getEmptyValue();
-        val cvс = DataHelper.getValidCvс();
+        var cardNumber = DataHelper.getFirstCardNumber();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getEmptyValue();
+        var cvс = DataHelper.getValidCvс();
         paymentPage.fillOutFields(cardNumber, month, year, owner, cvс);
         paymentPage.waitNecessaryFillOutField();
     }

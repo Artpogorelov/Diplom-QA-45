@@ -15,15 +15,15 @@ public class DBHelper {
     }
 
     public static String getStatusPaymentWithoutCredit() {
-        val statusSql = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
+        var statusSql = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
 
         try (
-                val connection = getConnection(url, user, password);
-                val statusStmt = connection.createStatement();
+                var connection = getConnection(url, user, password);
+                var statusStmt = connection.createStatement();
         ) {
-            try (val rs = statusStmt.executeQuery(statusSql)) {
+            try (var rs = statusStmt.executeQuery(statusSql)) {
                 if (rs.next()) {
-                    val status = rs.getString(1);
+                    var status = rs.getString(1);
 
                     return status;
                 }
@@ -36,15 +36,15 @@ public class DBHelper {
     }
 
     public static String getStatusPaymentWithCredit() {
-        val statusSql = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
+        var statusSql = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
 
         try (
-                val connection = getConnection(url, user, password);
-                val statusStmt = connection.createStatement();
+                var connection = getConnection(url, user, password);
+                var statusStmt = connection.createStatement();
         ) {
-            try (val rs = statusStmt.executeQuery(statusSql)) {
+            try (var rs = statusStmt.executeQuery(statusSql)) {
                 if (rs.next()) {
-                    val status = rs.getString(1);
+                    var status = rs.getString(1);
 
                     return status;
                 }
@@ -58,15 +58,15 @@ public class DBHelper {
 
     public static void cleanDataBase() {
 
-        val pays = "DELETE FROM payment_entity";
-        val credits = "DELETE FROM credit_request_entity";
-        val orders = "DELETE FROM order_entity";
+        var pays = "DELETE FROM payment_entity";
+        var credits = "DELETE FROM credit_request_entity";
+        var orders = "DELETE FROM order_entity";
 
         try (
-                val connection = getConnection(url, user, password);
-                val prepareStatPay = connection.createStatement();
-                val prepareStatCredit = connection.createStatement();
-                val prepareStatOrder = connection.createStatement();
+                var connection = getConnection(url, user, password);
+                var prepareStatPay = connection.createStatement();
+                var prepareStatCredit = connection.createStatement();
+                var prepareStatOrder = connection.createStatement();
 
         ) {
             prepareStatPay.executeUpdate(pays);
