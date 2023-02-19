@@ -20,12 +20,12 @@ ___
 В новой вкладке терминала запустить тестируемое приложение:
    * Для MySQL: 
    ```
-    java -jar ./artifacts/aqa-shop.jar -spring.datasource.url=jdbc:mysql://localhost:3306/app
+    java -jar ./artifacts/aqa-shop.jar -spring.datasource.url=jdbc:mysql://192.168.99.100:3306/app
 
    ```
    * Для PostgreSQL: 
    ```
-    java -jar ./artifacts/aqa-shop.jar -spring.datasource.url=jdbc:postgresql://localhost:5432/app
+    java -jar ./artifacts/aqa-shop.jar -spring.datasource.url=jdbc:postgresql://192.168.99.100:5432/app
   
   ```
    ### Запуск тестов
